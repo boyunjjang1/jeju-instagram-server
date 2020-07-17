@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/shake?autoReconnect=true&userSSL=false&userUnicode=true&chracterEncoding=utf8&serverTimezone=Asia/Seoul
+    username: root
+    password: ruaelqhdbs2@
