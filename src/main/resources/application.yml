@@ -7,3 +7,15 @@ spring:
     database: mysql
     generate-ddl: true
     show-sql: true
+
+#cloud:
+#  aws:
+#    credentials:
+#      accessKey: AKIAIK6PT7AMULNFLXUQ
+#      secretKey: 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
+#  s3:
+#    bucket: webtoondaram
+#  region:
+#    static: ap-northeast-2
+#  stack:
+#    auto: false

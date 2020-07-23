@@ -32,27 +32,31 @@ public class User {
 
     @Column
     private LocalDateTime created_at;
-
-    @Column
-    private LocalDateTime updated_at;
+//
+//    @Column
+//    private LocalDateTime updated_at;
 
     @PrePersist
     protected void onCreate() {
         created_at = LocalDateTime.now();
     }
 
+//    @PreUpdate
+//    protected void onUpdate() {
+//        updated_at = LocalDateTime.now();
+//    }
     public User(){
 
     }
 
-    public User(int user_id, String email, String password, String nickname, String name,LocalDateTime created_at, LocalDateTime updated_at){
+    public User(int user_id, String email, String password, String nickname, String name,LocalDateTime created_at){
         this.user_id = user_id;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.name = name;
         this.created_at = created_at;
-        this.updated_at = updated_at;
+//        this.updated_at = updated_at;
     }
 
 

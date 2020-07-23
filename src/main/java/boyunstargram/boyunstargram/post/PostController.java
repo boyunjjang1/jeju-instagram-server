@@ -5,7 +5,9 @@ import boyunstargram.boyunstargram.post.model.Post;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -15,7 +17,9 @@ public class PostController {
 
     private PostService postService;
 
+
     public PostController(PostService postService) {
+
         this.postService = postService;
     }
 
@@ -31,7 +35,8 @@ public class PostController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post createPost(@RequestBody Post post) {
+    public Post createPost(@RequestBody Post post){
+
         return this.postService.createPost(post);
     }
 

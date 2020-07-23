@@ -2,13 +2,19 @@ package boyunstargram.boyunstargram.post;
 
 import boyunstargram.boyunstargram.post.model.Post;
 import org.springframework.stereotype.Service;
+import boyunstargram.boyunstargram.post.PostService;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.io.*;
+import java.io.IOException;
 import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService{
+
     private PostRepository postRepository;
+
 
     public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -20,13 +26,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post createPost(Post post) {
-        if (this.postRepository.findById(post.getId()).isPresent()) {
-            // TODO make custom exception
-            throw new RuntimeException("This post already exists: " + post.getId());
-        } else {
+    public Post createPost(Post post){
             return this.postRepository.save(post);
-        }
     }
 
     @Override
