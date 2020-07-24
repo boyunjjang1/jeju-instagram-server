@@ -1,15 +1,18 @@
 package boyunstargram.boyunstargram.user;
 
 import boyunstargram.boyunstargram.user.model.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 
 import java.util.List;
 
 public interface UserService {
 
-//    User createUser(User user);
 
+//    int save(UserRequestDto userRequestDto);
 
-    String createUser(User user);
+    ResponseEntity createUser(User user, BindingResult bindingResult);
 
     User loginUser(String email, String password);
 

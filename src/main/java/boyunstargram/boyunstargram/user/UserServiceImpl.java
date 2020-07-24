@@ -4,9 +4,16 @@ import boyunstargram.boyunstargram.post.model.Post;
 import boyunstargram.boyunstargram.user.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.boot.jackson.JsonObjectDeserializer;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +21,7 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService{
 
     private static final String SIGNIN_EXCEPTION_MSG = "로그인정보가 일치하지 않습니다.";
+    private final static int ZERO = 0;
 
     private UserRepository userRepository;
 
@@ -21,8 +29,18 @@ public class UserServiceImpl implements UserService{
         this.userRepository = userRepository;
     }
 
+//    @Override
+//    public int save(UserRequestDto userRequestDto){
+//        return userRepository.save(userRequestDto.toEntity()).getUser_id();
+//    }
+
     @Override
-    public String createUser(User user) {
+    public ResponseEntity createUser(@Valid User user, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.getAllErrors());
+        }
+
         if (this.userRepository.findById(user.getUser_id()).isPresent()) {
             // TODO make custom exception
             throw new RuntimeException("This post already exists: " + user.getUser_id());
@@ -32,7 +50,7 @@ public class UserServiceImpl implements UserService{
             user.setPassword(encodedPassword);
             this.userRepository.save(user);
 
-            return "회원가입성공";
+            return ResponseEntity.ok(user);
         }
     }
 

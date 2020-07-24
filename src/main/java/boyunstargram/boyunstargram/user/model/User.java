@@ -1,12 +1,19 @@
 package boyunstargram.boyunstargram.user.model;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+
+@Data
 @Entity
 @Table(name = "user")
 @Getter
@@ -18,33 +25,36 @@ public class User {
     @Column(updatable = false, nullable = false)
     private int user_id;
 
+
     @Column
     private String email;
 
+    @Min(8)
+    @Max(15)
     @Column
     private String password;
 
+
+    @Min(4)
+    @Max(20)
+    @NotBlank(message = "닉네임을 입력해주세요.")
     @Column
     private String nickname;
 
+    @Min(2)
+    @Max(20)
+    @NotBlank(message = "이름을 입력해주세요.")
     @Column
     private String name;
 
     @Column
     private LocalDateTime created_at;
-//
-//    @Column
-//    private LocalDateTime updated_at;
 
     @PrePersist
     protected void onCreate() {
         created_at = LocalDateTime.now();
     }
 
-//    @PreUpdate
-//    protected void onUpdate() {
-//        updated_at = LocalDateTime.now();
-//    }
     public User(){
 
     }

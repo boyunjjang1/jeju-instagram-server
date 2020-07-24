@@ -5,8 +5,12 @@ import boyunstargram.boyunstargram.post.model.Post;
 import boyunstargram.boyunstargram.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -22,8 +26,9 @@ public class UserController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public String createUser(@RequestBody User user){
-        return this.userService.createUser(user);
+    public ResponseEntity createUser(@RequestBody User user, BindingResult bindingResult){
+        System.out.println("test create User");
+        return ResponseEntity.ok(this.userService.createUser(user, bindingResult));
     }
 
     @PutMapping("{user_id}")
