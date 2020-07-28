@@ -1,16 +1,11 @@
 package boyunstargram.boyunstargram.user.model;
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import boyunstargram.boyunstargram.security.model.AuthUser;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+
 
 
 @Data
@@ -18,6 +13,8 @@ import java.time.LocalDateTime;
 @Table(name = "user")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -29,46 +26,23 @@ public class User {
     @Column
     private String email;
 
-    @Min(8)
-    @Max(15)
     @Column
     private String password;
 
-
-    @Min(4)
-    @Max(20)
-    @NotBlank(message = "닉네임을 입력해주세요.")
     @Column
-    private String nickname;
-
-    @Min(2)
-    @Max(20)
-    @NotBlank(message = "이름을 입력해주세요.")
-    @Column
-    private String name;
+    private String role;
 
     @Column
-    private LocalDateTime created_at;
+    private boolean enable;
 
-    @PrePersist
-    protected void onCreate() {
-        created_at = LocalDateTime.now();
+
+    public AuthUser toAuthUser(){
+        return new AuthUser(email,password);
     }
 
-    public User(){
-
+    public static class NullUser extends User{
+        public NullUser(){
+            super(0,"--","--","ROLE_USER",false);
+        }
     }
-
-    public User(int user_id, String email, String password, String nickname, String name,LocalDateTime created_at){
-        this.user_id = user_id;
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.name = name;
-        this.created_at = created_at;
-//        this.updated_at = updated_at;
-    }
-
-
-
 }

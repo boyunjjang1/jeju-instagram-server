@@ -1,27 +1,26 @@
 package boyunstargram.boyunstargram.user;
 
 import boyunstargram.boyunstargram.user.model.User;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface UserService {
+@Service
+public class UserService {
 
+    private UserRepository userRepository;
 
-//    int save(UserRequestDto userRequestDto);
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
-    ResponseEntity createUser(User user, BindingResult bindingResult);
+    public List<User> getUsers(){
+        return userRepository.findAll();
+    }
 
-    User loginUser(String email, String password);
-
-    User updateUser(int user_id, User user);
-
-    void deleteUser(int user_id);
-
-    User getOneUser(int user_id);
-
+    public User save(User user){
+        return userRepository.save(user);
+    }
 
 
 }
