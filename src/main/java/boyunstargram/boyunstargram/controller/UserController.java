@@ -34,11 +34,4 @@ public class UserController {
         return this.userService.createUser(user);
     }
 
-//    @DeleteMapping("")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deleteUser(@RequestHeader(value = HttpHeaders.AUTHORIZATION) String token) throws Exception {
-//        String tokenValue = token.replace("Bearer ", "").trim();
-//        this.userService.deleteUser(tokenValue);
-//    }
-
 }
