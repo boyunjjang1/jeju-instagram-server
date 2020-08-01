@@ -29,7 +29,6 @@ public class Post {
     @Column
     private LocalDateTime created;
 
-
     public Post() {
         this.created = LocalDateTime.now();
     }

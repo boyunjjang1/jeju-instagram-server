@@ -15,9 +15,7 @@ public class PostResponse {
     private String content;
     private LocalDateTime created;
 
-    public PostResponse() {
-
-    }
+    public PostResponse() {}
 
     public PostResponse(Post post) {
         this.user_id = post.getUser_id();
