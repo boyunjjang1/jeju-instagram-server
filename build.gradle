@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'war'
 }
 
 group = 'boyun-stargram'
@@ -20,21 +21,21 @@ repositories {
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter-web'
-//	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-//		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-//	}
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
 	compile 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
-	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
-	compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+
+	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	runtimeOnly 'com.h2database:h2'
+
+
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
