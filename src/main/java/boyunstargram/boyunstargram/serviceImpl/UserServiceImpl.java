@@ -44,22 +44,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public void deleteUser(String token) throws Exception {
-//        int uid = jwtTokenUtil.getUserIdFromToken(token);
-//
-//        if (this.userRepository.findById(uid).isPresent()) {
-//            this.userRepository.deleteById(uid);
-//            List<Post> posts = this.postRepository.findByUid(uid)
-//                    .orElse(new ArrayList<>());
-//            for(int i=0;i<posts.size();i++) {
-//                this.imageRepository.deleteAllByPid(posts.get(i).getPid());
-//            }
-//            this.postRepository.deleteAllByUid(uid);
-//        } else {
-//            throw new RuntimeException("Not found post: " + uid);
-//        }
-//    }
-
-
 }

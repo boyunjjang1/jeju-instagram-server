@@ -48,7 +48,6 @@ public class PostServiceImpl implements PostService {
         post.setUser_id(user_id);
         post.setNickname(nickname);
         this.postRepository.save(post);
-
     }
 
     @Override
@@ -57,16 +56,12 @@ public class PostServiceImpl implements PostService {
 
         int user_id = jwtTokenUtil.getUserIdFromToken(token);
         if(user_id == p.getUser_id()) {
-            // token에서 가져온 uid랑 일치할 경우
             p.setContent(post.getContent());
             this.postRepository.save(p);
-
-
             PostResponse postResponse = new PostResponse(p);
             return postResponse;
         }
         else {
-            // 403 error
             throw new ForbiddenException("Forbidden");
         }
 
